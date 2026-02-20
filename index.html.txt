@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal PERSAS</title>
+
+<style>
+/* ===== STYLE ANDA (TIDAK DIUBAH) ===== */
+:root{
+  --primary:#0f172a;
+  --secondary:#1e293b;
+
+  /* warna rasmi PERSAS */
+  --persas-red:#b91c1c;
+  --persas-red-soft:#fee2e2;
+  --persas-blue:#38bdf8;
+  --persas-blue-soft:#e0f2fe;
+
+  /* override sistem */
+  --accent:var(--persas-blue);
+  --success:#16a34a;
+  --danger:#dc2626;
+  --card:#ffffff;
+  --bg:#f1f5f9;
+}
+
+/* tajuk section */
+.section-title{
+  font-weight:700;
+  font-size:15px;
+  margin-bottom:14px;
+  color:#0f172a;
+  border-left:5px solid var(--persas-red);
+  padding-left:10px;
+}
+
+/* field label */
+.label{
+  font-size:12px;
+  font-weight:600;
+  margin-bottom:4px;
+  color:#334155;
+}
+
+/* input design */
+.input-pro{
+  background:#f8fafc;
+  border-radius:12px;
+  border:1px solid #e2e8f0;
+  transition:.2s;
+}
+
+.input-pro:focus{
+  border:1px solid var(--persas-blue);
+  box-shadow:0 0 0 3px rgba(56,189,248,.25);
+  background:white;
+}
+
+/* button utama */
+.btn-primary{
+  background:linear-gradient(135deg,var(--persas-red),var(--persas-blue));
+  border:none;
+  border-radius:14px;
+  padding:14px;
+  font-weight:700;
+  letter-spacing:.5px;
+}
+
+/* payment card */
+.payment-box{
+  background:linear-gradient(135deg,#fff,#f8fafc);
+  border:1px solid #e2e8f0;
+  border-radius:18px;
+  padding:18px;
+}
+
+.copy{
+  color:var(--persas-blue);
+  cursor:pointer;
+  font-weight:600;
+}
+
+.copy:hover{
+  text-decoration:underline;
+}
+
+.doc-header{
+  font-weight:700;
+  margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.doc-badge{
+  color:white;
+  padding:3px 10px;
+  border-radius:12px;
+  font-size:12px;
+}
+
+.doc-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px;
+  border-radius:12px;
+  background:#f8fafc;
+  margin-top:8px;
+}
+
+.doc-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.doc-icon{
+  font-size:18px;
+}
+
+.doc-name{
+  font-size:13px;
+  font-weight:500;
+}
+
+.doc-actions a{
+  text-decoration:none;
+  padding:6px 10px;
+  border-radius:8px;
+  font-size:12px;
+  margin-left:6px;
+}
+
+/* ===== APP FORM UX UPGRADE ===== */
+
+.form-group{
+  margin-bottom:16px;
+}
+
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.input-pro, select, textarea{
+  background:#f8fafc;
+  border-radius:14px;
+  border:1px solid #e5e7eb;
+  transition:.18s;
+  font-size:15px;
+}
+
+.input-pro::placeholder{
+  color:#94a3b8;
+}
+
+.input-pro:focus{
+  border:1px solid var(--persas-blue);
+  background:white;
+  box-shadow:0 0 0 4px rgba(56,189,248,.15);
+}
+
+.section-card{
+  background:linear-gradient(180deg,#ffffff,#f8fafc);
+  border:1px solid #eef2f7;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:18px;
+}
+
+.section-title{
+  font-size:14px;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+}
+
+.helper{
+  font-size:12px;
+  color:#64748b;
+  margin-top:-8px;
+  margin-bottom:8px;
+}
+
+.primary-big{
+  padding:16px;
+  font-size:16px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#b91c1c,#38bdf8);
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.primary-big:active{
+  transform:scale(.98);
+}
+
+/* ===== PROFILE CARD (SEMakan) ===== */
+
+.profile-card{
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:white;
+  padding:20px;
+  border-radius:20px;
+  margin-bottom:18px;
+  box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.profile-name{
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:.3px;
+}
+
+.profile-id{
+  font-size:13px;
+  opacity:.8;
+  margin-top:4px;
+}
+
+.profile-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:14px;
+}
+
+.profile-item{
+  background:rgba(255,255,255,.08);
+  padding:10px;
+  border-radius:12px;
+  font-size:13px;
+}
+
+/* ===== SUMMARY BOXES ===== */
+.summary-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.summary-box{
+  background:white;
+  border-radius:18px;
+  padding:18px 14px;
+  box-shadow:0 8px 18px rgba(0,0,0,.08);
+  text-align:center;
+  position:relative;
+}
+
+.summary-title{
+  font-size:12px;
+  color:#64748b;
+  margin-bottom:6px;
+  letter-spacing:.4px;
+}
+
+.summary-count{
+  font-size:26px;
+  font-weight:800;
+  color:#0f172a;
+}
+
+.summary-dot{
+  position:absolute;
+  top:10px;
+  right:10px;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+}
+
+/* ===== TRANSACTION STYLE LIST ===== */
+
+.doc-item{
+  background:white;
+  border:1px solid #eef2f7;
+  border-radius:14px;
+  padding:12px;
+  margin-top:10px;
+}
+
+.doc-left{
+  gap:12px;
+}
+
+.doc-icon{
+  width:36px;
+  height:36px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f1f5f9;
+  font-size:16px;
+}
+
+/* modern button */
+.doc-actions a{
+  padding:7px 12px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:600;
+}
+
+.btn-view{
+  background:#111827;
+  color:white;
+}
+
+.btn-download{
+  background:#e0f2fe;
+  color:#0369a1;
+}
+
+/* ===== PDF ACTION BUTTON (PREMIUM) ===== */
+.doc-actions{
+  display:flex;
+  align-items:center;
+}
+
+.pdf-action{
+  display:flex;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid #e5e7eb;
+  background:white;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+
+.pdf-action a{
+  text-decoration:none;
+  font-size:12px;
+  font-weight:600;
+  padding:7px 12px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* kiri */
+.pdf-open{
+  color:#111827;
+  background:#f8fafc;
+}
+
+.pdf-open:hover{
+  background:#eef2f7;
+}
+
+/* kanan */
+.pdf-download{
+  background:linear-gradient(135deg,#2563eb,#38bdf8);
+  color:white;
+}
+
+.pdf-download:hover{
+  filter:brightness(1.05);
+}
+
+.profile-label{
+  opacity:.7;
+  font-size:11px;
+}
+
+.doc-section-title{
+  font-weight:700;
+  margin:18px 0 8px;
+  font-size:13px;
+  letter-spacing:.4px;
+  color:#334155;
+}
+
+.doc-item{
+  transition:.15s;
+}
+
+.doc-item:hover{
+  transform:translateY(-2px);
+  background:#f1f5f9;
+}
+
+.btn-view{background:#2563eb;color:white;}
+.btn-download{background:#0ea5e9;color:white;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);}
+.app{max-width:420px;margin:auto;min-height:100vh;display:flex;flex-direction:column;background:white;box-shadow:0 0 30px rgba(0,0,0,0.08);}
+.header{background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;padding:20px;text-align:center;font-weight:600;}
+.content{flex:1;padding:20px;overflow-y:auto;}
+.card{background:var(--card);padding:18px;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,0.06);margin-bottom:15px;}
+.amount-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px;}
+.amount-btn{background:#e0f2fe;color:#0369a1;border:none;padding:12px;border-radius:12px;font-weight:600;cursor:pointer;transition:all .2s ease;}
+.amount-btn.active{background:linear-gradient(135deg,#0ea5e9,#2563eb);color:white;transform:scale(1.05);}
+.resit-toggle{display:flex;gap:20px;margin-top:10px;}
+.resit-toggle label{background:#f1f5f9;padding:8px 14px;border-radius:20px;cursor:pointer;font-weight:500;}
+.resit-toggle input{display:none;}
+.resit-toggle input:checked + span{color:white;}
+.resit-toggle input[value="YA"]:checked + span{background:#16a34a;padding:8px 14px;border-radius:20px;}
+.resit-toggle input[value="TIDAK"]:checked + span{background:#dc2626;padding:8px 14px;border-radius:20px;}
+.confirm-email{display:flex;align-items:flex-start;gap:8px;margin-top:10px;font-size:13px;color:#475569;}
+.confirm-email input{width:auto !important;margin-top:3px;}
+input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #e2e8f0;margin-bottom:12px;font-size:14px;}
+input:focus,select:focus,textarea:focus{outline:none;border:1px solid var(--accent);}
+button{width:100%;padding:13px;border:none;border-radius:12px;background:var(--accent);color:white;font-weight:600;cursor:pointer;}
+button:hover{opacity:.9}
+.bottom-nav{display:flex;justify-content:space-around;padding:12px 0;background:white;border-top:1px solid #e5e7eb;}
+.bottom-nav div{text-align:center;font-size:11px;color:#64748b;cursor:pointer;}
+.bottom-nav .active{color:var(--accent);font-weight:600;}
+.success{color:var(--success)}
+.error{color:var(--danger)}
+
+/* ===== HOME DASHBOARD ===== */
+
+.hero{
+  background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);
+  color:white;
+  padding:24px;
+  border-radius:22px;
+  margin-bottom:18px;
+  box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.hero-title{
+  font-size:22px;
+  font-weight:800;
+}
+
+.hero-sub{
+  opacity:.8;
+  font-size:13px;
+}
+
+.hero-count{
+  margin-top:12px;
+  font-weight:600;
+  font-size:15px;
+}
+
+/* waktu solat */
+.solat-card{text-align:center}
+.clock{
+  font-size:30px;
+  font-weight:800;
+  margin:10px 0;
+}
+
+.solat-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  font-size:13px;
+}
+
+/* news */
+.news{
+  border-left:4px solid var(--persas-red);
+  padding-left:10px;
+  margin-bottom:12px;
+}
+.news-title{font-weight:700}
+.news-desc{font-size:14px;color:#475569}
+.news-date{font-size:12px;color:#94a3b8}
+
+/* quick buttons */
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.quick-btn{
+  padding:15px;
+  border-radius:16px;
+  border:none;
+  background:linear-gradient(135deg,#b91c1c,#38bdf8);
+  color:white;
+  font-weight:700;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+  <div class="header" id="header-title">Portal PERSAS</div>
+  <div class="content" id="page-content"></div>
+
+  <div class="bottom-nav">
+    <div onclick="loadPage('home')" id="nav-home">🏠<br>Home</div>
+    <div onclick="loadPage('daftar')" id="nav-daftar">👤<br>Daftar</div>
+    <div onclick="loadPage('semak')" id="nav-semak">🔎<br>Semak</div>
+    <div onclick="loadPage('sumbangan')" id="nav-sumbangan">💰<br>Sumbangan</div>
+  </div>
+</div>
+
+<script>
+
+/* ============================
+   SPA MAIN LOADER
+============================ */
+function loadPage(page){
+  const contentDiv=document.getElementById("page-content");
+  const header=document.getElementById("header-title");
+
+  document.querySelectorAll(".bottom-nav div")
+    .forEach(el=>el.classList.remove("active"));
+
+  const nav=document.getElementById("nav-"+page);
+  if(nav) nav.classList.add("active");
+
+  switch(page){
+
+    case 'home':
+header.innerText="Portal PERSAS";
+
+contentDiv.innerHTML=`
+
+<div class="hero">
+  <div class="hero-title">Kelab PERSAS</div>
+  <div class="hero-sub">Komuniti Belia Sungai Ramal</div>
+  <div class="hero-count">👥 <span id="jumlahAhli">...</span> Ahli Berdaftar</div>
+</div>
+
+<div class="card solat-card">
+  <div class="section-title">Waktu Solat Hari Ini</div>
+  <div class="clock" id="clock">00:00</div>
+  <div id="solatToday" class="solat-grid"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">Aktiviti Terkini</div>
+
+  <div class="news">
+    <div class="news-title">⚽ Kejohanan Sepak Penalti</div>
+    <div class="news-desc">
+    Program berjaya menghimpunkan belia sekitar Sungai Ramal.
+    Tahniah kepada semua peserta!
+    </div>
+    <div class="news-date">Februari 2026</div>
+  </div>
+
+</div>
+
+<div class="quick-grid">
+  <button class="quick-btn" onclick="loadPage('daftar')">👤 Daftar Ahli</button>
+  <button class="quick-btn" onclick="loadPage('semak')">🔎 Semak Ahli</button>
+  <button class="quick-btn" onclick="loadPage('sumbangan')">💰 Sumbangan</button>
+  <button class="quick-btn" onclick="hubungiPersas()">📞 Hubungi Kami</button>
+</div>
+
+<div class="card">
+  <div class="section-title">Tentang PERSAS</div>
+  Kelab komuniti yang memfokuskan pembangunan belia,
+  aktiviti sosial dan kebajikan masyarakat setempat.
+</div>
+
+`;
+
+initHome();
+break;
+
+
+    case 'daftar':
+header.innerText="Pendaftaran Ahli";
+contentDiv.innerHTML=`
+
+<div class="section-card">
+
+  <div class="section-title">Maklumat Peribadi</div>
+
+  <div class="form-group">
+    <div class="label">Gelaran</div>
+    <select id="gelaran" class="input-pro">
+      <option value="">Pilih Satu</option>
+      <option>Encik</option>
+      <option>Puan</option>
+      <option>Cik</option>
+      <option>Tuan Haji</option>
+      <option>Puan Hajah</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <div class="label">Nama Penuh *</div>
+    <input id="nama" class="input-pro" placeholder="Seperti dalam kad pengenalan">
+  </div>
+
+  <div class="form-row">
+    <div>
+      <div class="label">No Kad Pengenalan *</div>
+      <input id="ic" class="input-pro" placeholder="No.Ic">
+    </div>
+
+    <div>
+      <div class="label">Jantina</div>
+      <select id="jantina" class="input-pro">
+        <option value="">Pilih Satu</option>
+        <option>Lelaki</option>
+        <option>Perempuan</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="label">Alamat</div>
+    <textarea id="alamat" class="input-pro" rows="2" placeholder="Alamat penuh"></textarea>
+  </div>
+
+  <div class="form-row">
+    <div>
+      <div class="label">Kawasan</div>
+      <select id="kawasan" class="input-pro">
+        <option value="">Pilih kawasan</option>
+        <option>Taman Sri Ramal</option>
+        <option>Taman Ramal Indah</option>
+        <option>Sungai Ramal Dalam</option>
+        <option>Sungai Ramal Luar</option>
+        <option>Lain-lain</option>
+      </select>
+    </div>
+
+    <div>
+      <div class="label">Pekerjaan</div>
+      <select id="pekerjaan" class="input-pro">
+        <option value="">Pilih</option>
+        <option>Bekerja dengan Kerajaan</option>
+        <option>Bekerja dengan Swasta</option>
+        <option>Bekerja Sendiri</option>
+        <option>Pelajar</option>
+        <option>Suri Rumah / Pencen</option>
+      </select>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="section-card">
+
+  <div class="section-title">Maklumat Perhubungan</div>
+
+  <div class="form-group">
+    <div class="label">Email</div>
+    <input id="email" class="input-pro" placeholder="contoh@email.com">
+  </div>
+
+  <div class="form-group">
+    <div class="label">No Telefon / Whatsapp *</div>
+    <input id="telefon" class="input-pro" placeholder="013xxxxxxx">
+  </div>
+
+</div>
+
+
+<div class="section-card payment-box">
+
+  <div class="section-title">Yuran Keahlian</div>
+
+  <div style="line-height:1.8;font-size:14px">
+  <b>Bank :</b> Maybank Islamic<br>
+  <b>No Akaun :</b>
+  <span class="copy" onclick="copyText('566010853833')">566010853833</span><br>
+  <b>Penama :</b> KELAB PEMBANGUNAN EKONOMI, REKREASI DAN SOSIAL SUNGAI RAMAL<br><br>
+  <b>Bendahari :</b> Mohamad Haikal Bin Hasnul<br>
+  <b>Whatsapp Bendahari :</b>
+  <span class="copy" onclick="copyText('+601111141964')">+6011-1114 1964</span>
+  </div>
+
+  <div style="text-align:center;margin-top:15px">
+    <img id="qrImage" style="width:200px;border-radius:14px">
+  </div>
+
+</div>
+
+
+<div class="section-card">
+
+  <div class="section-title">Status Pembayaran</div>
+
+  <select id="pengesahan" class="input-pro">
+    <option value="">Pilih status</option>
+    <option>Telah Membuat Pembayaran</option>
+    <option>Akan Membuat Pembayaran</option>
+  </select>
+
+</div>
+
+
+<div class="card">
+  <button id="btn-daftar" class="btn-primary primary-big">
+    HANTAR PENDAFTARAN
+  </button>
+  <div id="status" style="margin-top:12px"></div>
+</div>
+`;
+initDaftarForm();
+loadQrImage();
+break;
+
+function copyText(text){
+  navigator.clipboard.writeText(text);
+  alert("Disalin: " + text);
+}
+
+    case 'semak':
+    header.innerText="Semakan Ahli";
+    contentDiv.innerHTML=`
+
+    <div class="card">
+      <div style="font-weight:700;font-size:18px;margin-bottom:10px">
+        Carian Rekod Ahli
+      </div>
+
+      <input id="keyword" placeholder="Masukkan No IC atau No Ahli">
+
+      <button id="btn-semak" class="btn-primary">
+        🔎 SEMAK MAKLUMAT
+      </button>
+
+      <div id="loadingSemak" style="
+        display:none;margin-top:12px;
+        color:#64748b;font-size:14px">
+        Sedang mencari rekod...
+      </div>
+    </div>
+
+    <div id="result"></div>
+    `;
+    initSemakForm();
+    break;
+
+    case 'sumbangan':
+      header.innerText="Sumbangan PERSAS";
+      contentDiv.innerHTML=`
+        <div class="card">
+          <div style="font-weight:600;margin-bottom:10px;">
+          Terima Kasih Atas Keprihatinan Anda</div>
+          <div style="font-size:14px;color:#475569;line-height:1.6;">
+          Setiap sumbangan akan dimanfaatkan sepenuhnya untuk pembangunan belia dan masyarakat setempat.
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:600;">Penama Sumbangan</div>
+          <input type="text" id="nama" placeholder="No Ahli / No Kad Pengenalan / Nama">
+        </div>
+
+        <div class="card">
+          <div style="font-weight:600;">Perkara Sumbangan</div>
+          <select id="perkara">
+            <option value="">-- Pilih Perkara --</option>
+            <option>Pembangunan Belia</option>
+            <option>Rekreasi & Sosial</option>
+            <option>Program Komuniti</option>
+            <option>Lain-lain</option>
+          </select>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:600;">Jumlah Pembayaran</div>
+          <input type="text" id="jumlah" placeholder="RM100.00">
+          <div class="amount-grid">
+            <button type="button" class="amount-btn" onclick="selectAmount(this,10)">RM10</button>
+            <button type="button" class="amount-btn" onclick="selectAmount(this,30)">RM30</button>
+            <button type="button" class="amount-btn" onclick="selectAmount(this,50)">RM50</button>
+            <button type="button" class="amount-btn" onclick="selectAmount(this,100)">RM100</button>
+            <button type="button" class="amount-btn" onclick="selectAmount(this,300)">RM300</button>
+            <button type="button" class="amount-btn" onclick="selectAmount(this,500)">RM500</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:600;">Butiran Pembayaran</div>
+          <b>Bank :</b> Maybank Islamic Berhad<br>
+          <b>No Akaun :</b>
+          <span onclick="copyAcc()" style="color:#0ea5e9;cursor:pointer;">
+          566010853833</span><br>
+          <b>Penama :</b> KELAB PEMBANGUNAN EKONOMI, REKREASI DAN SOSIAL SUNGAI RAMAL<br><br>
+      <b>Bendahari :</b> Mohamad Haikal Bin Hasnul<br>
+      <b>Whatsapp :</b> <a href="https://wa.me/601111141964" target="_blank">+6011-1114 1964</a>
+
+          <img id="qrImage"
+          style="width:200px;border-radius:12px;display:block;margin:10px auto;">
+        </div>
+
+        <div class="card">
+          <div style="font-weight:600;">Upload Resit</div>
+          <input type="file" id="fileResit">
+        </div>
+
+        <div class="card">
+          <div style="font-weight:600;">Perlukan Resit Rasmi?</div>
+          <div class="resit-toggle">
+            <label><input type="radio" name="resit" value="YA"><span>YA</span></label>
+            <label><input type="radio" name="resit" value="TIDAK"><span>TIDAK</span></label>
+          </div>
+          <div id="emailDiv" style="display:none;margin-top:15px;">
+            <input type="email" id="email" placeholder="Masukkan email">
+            <div class="confirm-email">
+              <input type="checkbox" id="confirmEmail">
+              <label for="confirmEmail">Saya mengesahkan alamat e-mel ini adalah betul untuk tujuan penerimaan resit rasmi.</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <button id="btn-hantar"
+          style="background:linear-gradient(135deg,#b91c1c,#0ea5e9);">
+          HANTAR SUMBANGAN</button>
+        </div>
+      `;
+      initSumbanganPremium();
+      break;
+  }
+}
+
+/* ============================
+   FORM FUNCTIONS
+============================ */
+
+function initDaftarForm(){
+
+  const btn=document.getElementById("btn-daftar");
+  if(!btn) return;
+
+  btn.onclick=function(){
+
+    const data={
+      gelaran:document.getElementById("gelaran").value,
+      nama:document.getElementById("nama").value,
+      ic:document.getElementById("ic").value,
+      jantina:document.getElementById("jantina").value,
+      email:document.getElementById("email").value,
+      telefon:document.getElementById("telefon").value,
+      alamat:document.getElementById("alamat").value,
+      kawasan:document.getElementById("kawasan").value,
+      pekerjaan:document.getElementById("pekerjaan").value,
+      pengesahan:document.getElementById("pengesahan").value
+    };
+
+    const status=document.getElementById("status");
+
+    if(!data.nama||!data.ic||!data.telefon){
+      status.innerHTML="<div class='error'>Sila lengkapkan maklumat wajib</div>";
+      return;
+    }
+
+    status.innerHTML="Menghantar pendaftaran...";
+
+    google.script.run
+      .withSuccessHandler(res=>{
+        status.innerHTML=`
+          <div class='success'>
+            Pendaftaran berjaya<br>
+            <b>No Ahli: ${res.noAhli}</b>
+          </div>`;
+      })
+      .submitDaftarAhli(data);
+
+  };
+}
+
+function initSemakForm(){
+
+  const btn=document.getElementById("btn-semak");
+  if(!btn) return;
+
+  btn.onclick=function(){
+
+    const keyword=document.getElementById("keyword").value.trim();
+    if(!keyword) return;
+
+    const resultDiv=document.getElementById("result");
+    document.getElementById("loadingSemak").style.display="block";
+    resultDiv.innerHTML="";
+
+    google.script.run.withSuccessHandler(res=>{
+
+      document.getElementById("loadingSemak").style.display="none";
+
+      if(res.status!=="jumpa"){
+        resultDiv.innerHTML=`
+        <div class="card" style="text-align:center">
+          <div style="font-size:40px">❌</div>
+          <div style="font-weight:600;margin-top:8px">
+            Rekod tidak dijumpai
+          </div>
+        </div>`;
+        return;
+      }
+
+// ===== PROFILE =====
+let html=`
+<div class="profile-card">
+  <div class="profile-name">${res.info.nama}</div>
+  <div class="profile-id">No Ahli: ${res.info.noAhli}</div>
+
+  <div class="profile-grid">
+    <div class="profile-item">
+      <div class="profile-label">No Kad Pengenalan</div>
+      ${res.info.ic}
+    </div>
+
+    <div class="profile-item">
+      <div class="profile-label">Kawasan</div>
+      ${res.info.kawasan||"-"}
+    </div>
+
+    <div class="profile-item">
+      <div class="profile-label">Pekerjaan</div>
+      ${res.info.pekerjaan||"-"}
+    </div>
+
+    <div class="profile-item">
+      <div class="profile-label">Alamat</div>
+      ${res.info.alamat||"-"}
+    </div>
+  </div>
+</div>
+`;
+
+// ===== SUMMARY BOXES =====
+html+=`
+<div class="summary-grid">
+
+  <div class="summary-box">
+    <div class="summary-dot" style="background:#2563eb"></div>
+    <div class="summary-title">Agreement</div>
+    <div class="summary-count">${res.agreement?.length||0}</div>
+  </div>
+
+  <div class="summary-box">
+    <div class="summary-dot" style="background:#16a34a"></div>
+    <div class="summary-title">Bayaran</div>
+    <div class="summary-count">${res.resitBayar?.length||0}</div>
+  </div>
+
+  <div class="summary-box">
+    <div class="summary-dot" style="background:#f59e0b"></div>
+    <div class="summary-title">Claim</div>
+    <div class="summary-count">${res.resitClaim?.length||0}</div>
+  </div>
+
+  <div class="summary-box">
+    <div class="summary-dot" style="background:#dc2626"></div>
+    <div class="summary-title">Sumbangan</div>
+    <div class="summary-count">${res.resitSumbang?.length||0}</div>
+  </div>
+
+</div>
+`;
+
+
+// ===== LIST RENDER =====
+function renderDocs(title,data,color,icon){
+
+  const total=data?.length||0;
+
+  let items="";
+
+  if(total===0){
+    items=`<div style="color:#94a3b8;padding:10px">Tiada rekod</div>`;
+  }else{
+    items=data.map(f=>`
+  <div class="doc-item">
+
+    <div class="doc-left">
+      <span class="doc-icon">${icon}</span>
+      <div class="doc-name">${f.nama}</div>
+    </div>
+
+    <div class="doc-actions">
+      <div class="pdf-action">
+        <a href="${f.url}" target="_blank" class="pdf-open">
+          👁 Buka
+        </a>
+        <a href="${f.url}" target="_blank" download class="pdf-download">
+          ⬇ PDF
+        </a>
+      </div>
+    </div>
+
+  </div>
+`).join("");
+  }
+
+  return `
+  <div class="card">
+    <div class="doc-header">
+      ${title}
+      <span class="doc-badge" style="background:${color}">
+        ${total}
+      </span>
+    </div>
+    ${items}
+  </div>`;
+}
+
+html+=renderDocs("Agreement",res.agreement,"#2563eb","📄");
+html+=renderDocs("Resit Pembayaran",res.resitBayar,"#16a34a","💰");
+html+=renderDocs("Resit Claim",res.resitClaim,"#f59e0b","🧾");
+html+=renderDocs("Resit Sumbangan",res.resitSumbang,"#dc2626","🎁");
+
+resultDiv.innerHTML=html;
+
+    }).semakAhli(keyword);
+  }
+}
+
+function initSumbanganPremium(){
+
+  // LOAD QR
+  google.script.run
+    .withSuccessHandler(url=>{
+      const img=document.getElementById("qrImage");
+      if(img) img.src=url;
+    })
+    .getQrImageUrl();
+
+
+  // TOGGLE EMAIL
+  document.querySelectorAll('input[name="resit"]').forEach(el=>{
+    el.addEventListener('change',()=>{
+      document.getElementById("emailDiv").style.display=
+        (el.value==="YA")?"block":"none";
+    });
+  });
+
+
+  const btn=document.getElementById("btn-hantar");
+  if(!btn) return;
+
+  btn.onclick=async function(){
+
+    const nama=document.getElementById("nama").value.trim();
+    const perkara=document.getElementById("perkara").value.trim();
+
+    let jumlah=document.getElementById("jumlah").value
+      .replace("RM","")
+      .replace(/,/g,"")
+      .trim();
+
+    const fileInput=document.getElementById("fileResit");
+    const resitRadio=document.querySelector('input[name="resit"]:checked');
+    const email=document.getElementById("email")?.value.trim()||"";
+    const confirmEmail=document.getElementById("confirmEmail")?.checked||false;
+
+    if(!nama||!perkara||!jumlah){
+      alert("Sila lengkapkan semua maklumat.");
+      return;
+    }
+
+    if(isNaN(jumlah)){
+      alert("Jumlah tidak sah.");
+      return;
+    }
+
+    if(resitRadio && resitRadio.value==="YA"){
+      if(!email || !confirmEmail){
+        alert("Sila isi dan sahkan email untuk resit rasmi.");
+        return;
+      }
+    }
+
+    document.getElementById("loading").style.display="flex";
+
+    // ========= FILE HANDLER =========
+    if(fileInput.files.length>0){
+
+      const file=fileInput.files[0];
+      const reader=new FileReader();
+
+      reader.onload=function(e){
+
+        const base64=e.target.result.split(",")[1];
+
+        send({
+          nama,
+          perkara,
+          jumlah:Number(jumlah),
+          perluResit:resitRadio?resitRadio.value:"TIDAK",
+          email,
+          fileName:file.name,
+          fileType:file.type,
+          fileBase64:base64
+        });
+
+      };
+
+      reader.readAsDataURL(file);
+
+    }else{
+
+      send({
+        nama,
+        perkara,
+        jumlah:Number(jumlah),
+        perluResit:resitRadio?resitRadio.value:"TIDAK",
+        email,
+        fileName:"",
+        fileType:"",
+        fileBase64:""
+      });
+
+    }
+  };
+
+
+  function send(payload){
+
+    google.script.run
+      .withSuccessHandler(function(res){
+
+        document.getElementById("loading").style.display="none";
+
+        if(res==="OK"){
+
+          document.getElementById("popup").style.display="flex";
+
+          // RESET
+          document.getElementById("nama").value="";
+          document.getElementById("jumlah").value="";
+          document.getElementById("perkara").value="";
+          document.getElementById("fileResit").value="";
+          document.getElementById("email").value="";
+          document.querySelectorAll(".amount-btn")
+            .forEach(btn=>btn.classList.remove("active"));
+
+        }else{
+          alert("Ralat semasa menghantar.");
+        }
+
+      })
+      .withFailureHandler(err=>{
+        document.getElementById("loading").style.display="none";
+        alert("Error: "+err.message);
+      })
+      .submitSumbangan(payload);
+  }
+
+}
+
+
+/* ============================
+   UTIL
+============================ */
+function selectAmount(button,amount){
+  document.querySelectorAll(".amount-btn")
+    .forEach(btn=>btn.classList.remove("active"));
+  button.classList.add("active");
+  document.getElementById("jumlah").value=
+  "RM"+amount.toFixed(2);
+}
+
+function copyAcc(){
+  navigator.clipboard.writeText("566010853833");
+  alert("Nombor akaun telah disalin");
+}
+
+function loadQrImage(){
+
+  const img=document.getElementById("qrImage");
+  if(!img) return; // elak SPA error
+
+  google.script.run
+    .withSuccessHandler(function(url){
+      const el=document.getElementById("qrImage");
+      if(el) el.src=url;
+    })
+    .getQrImageUrl();
+
+}
+
+/* ===== HOME FUNCTIONS ===== */
+
+function initHome(){
+  startClock();
+  loadSolat();
+  loadAhliCount();
+}
+
+function startClock(){
+  setInterval(()=>{
+    const now=new Date();
+    document.getElementById("clock").innerText=
+      now.toLocaleTimeString();
+  },1000);
+}
+
+function hubungiPersas(){
+  window.open("https://wa.me/601111141964","_blank");
+}
+
+function loadAhliCount(){
+  google.script.run.withSuccessHandler(n=>{
+    document.getElementById("jumlahAhli").innerText=n;
+  }).getJumlahAhli();
+}
+
+function loadSolat(){
+fetch("https://api.aladhan.com/v1/timingsByCity?city=kajang&country=malaysia&method=11")
+.then(r=>r.json())
+.then(d=>{
+const t=d.data.timings;
+document.getElementById("solatToday").innerHTML=`
+<div>Subuh<br><b>${t.Fajr}</b></div>
+<div>Zohor<br><b>${t.Dhuhr}</b></div>
+<div>Asar<br><b>${t.Asr}</b></div>
+<div>Maghrib<br><b>${t.Maghrib}</b></div>
+<div>Isyak<br><b>${t.Isha}</b></div>
+`;
+});
+}
+
+/* ===== APPS SCRIPT FIX ===== */
+window.loadPage=loadPage;
+window.selectAmount=selectAmount;
+window.copyAcc=copyAcc;
+
+window.onload=function(){
+  loadPage('home');
+};
+
+
+
+</script>
+
+<!-- LOADING -->
+<div id="loading" style="
+position:fixed;inset:0;background:rgba(0,0,0,.4);
+display:none;align-items:center;justify-content:center;
+z-index:9999;color:white;font-weight:600">
+Menghantar...
+</div>
+
+<!-- POPUP SUCCESS -->
+<div id="popup" style="
+position:fixed;inset:0;background:rgba(0,0,0,.4);
+display:none;align-items:center;justify-content:center;
+z-index:9999;">
+  <div style="
+  background:white;padding:25px;border-radius:16px;
+  text-align:center;width:260px">
+    <div style="font-size:40px">✅</div>
+    <div style="margin:10px 0;font-weight:600">
+      Terima kasih atas sumbangan anda
+    </div>
+    <button onclick="document.getElementById('popup').style.display='none'">
+      Tutup
+    </button>
+  </div>
+</div>
+
+</body>
+</html>
